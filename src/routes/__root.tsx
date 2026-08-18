@@ -1,0 +1,60 @@
+import { createRootRoute, HeadContent, Outlet, Scripts } from "@tanstack/react-router";
+import { AuthProvider } from "@/lib/auth/provider";
+import { PreviewHostBridge } from "@/components/preview-host-bridge";
+import { APP_NAME } from "@/lib/site";
+import appCss from "../styles.css?url";
+
+const host = import.meta.env.VITE_PUBLIC_HOSTNAME;
+const ogImage = host ? `https://${host}/og.jpg` : undefined;
+
+export const Route = createRootRoute({
+  head: () => ({
+    meta: [
+      { charSet: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { title: `${APP_NAME} — Streams` },
+      {
+        name: "description",
+        content:
+          "Ferrous Lion — gaming streamer. Chill Fortnite, story worlds on PC, and PS5 exclusives. Watch on Twitch, YouTube, and TikTok.",
+      },
+      { name: "apple-mobile-web-app-title", content: APP_NAME },
+      { name: "theme-color", content: "#09090b" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:type", content: "website" },
+      { property: "og:title", content: `${APP_NAME} — Streams` },
+      {
+        property: "og:description",
+        content:
+          "Chill Fortnite nights, story worlds on PC, and PS5 exclusives when they earn the wait.",
+      },
+      ...(ogImage
+        ? [
+            { property: "og:image", content: ogImage },
+            { property: "og:image:width", content: "1200" },
+            { property: "og:image:height", content: "630" },
+          ]
+        : []),
+    ],
+    links: [
+      { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
+      { rel: "stylesheet", href: appCss },
+      { rel: "manifest", href: "/__grok/manifest.webmanifest" },
+      { rel: "apple-touch-icon", href: "/__grok/icon-180.png" },
+    ],
+  }),
+  component: () => (
+    <html lang="en" className="antialiased" suppressHydrationWarning>
+      <head>
+        <HeadContent />
+      </head>
+      <body className="bg-bg text-fg">
+        <PreviewHostBridge />
+        <AuthProvider>
+          <Outlet />
+        </AuthProvider>
+        <Scripts />
+      </body>
+    </html>
+  ),
+});
