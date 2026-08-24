@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { ExternalLink, Play } from "lucide-react";
-import type { LatestContent as LatestContentData, YoutubeVideo } from "@/lib/content";
-import { SOCIALS, TIKTOK_HANDLE } from "@/lib/site";
+import type {
+  LatestContent as LatestContentData,
+  TwitchVideo,
+  YoutubeVideo,
+} from "@/lib/content";
+import { SOCIALS, TIKTOK_HANDLE, TWITCH_HANDLE } from "@/lib/site";
 import { Button } from "@/components/ui/button";
-import { IconTikTok, IconYouTube } from "@/components/brand-icons";
+import { IconTikTok, IconTwitch, IconYouTube } from "@/components/brand-icons";
 import { cn } from "@/lib/utils";
 
 function viewsLabel(views: number) {
@@ -14,7 +18,17 @@ function viewsLabel(views: number) {
   return `${views} views`;
 }
 
-function VideoCard({ video }: { video: YoutubeVideo }) {
+function VideoCard({
+  video,
+  meta,
+  badge,
+}: {
+  video: Pick<YoutubeVideo, "id" | "title" | "url" | "thumbnail" | "published"> & {
+    isShort?: boolean;
+  };
+  meta: string;
+  badge?: string;
+}) {
   return (
     <a
       href={video.url}
@@ -23,22 +37,24 @@ function VideoCard({ video }: { video: YoutubeVideo }) {
       className="hairline hairline-hover group flex flex-col overflow-hidden rounded-2xl bg-surface"
     >
       <div className="relative aspect-video overflow-hidden bg-raised">
-        <img
-          src={video.thumbnail}
-          alt=""
-          className={cn(
-            "media-zoom size-full object-cover outline-none",
-            video.isShort && "thumb-short",
-          )}
-        />
+        {video.thumbnail ? (
+          <img
+            src={video.thumbnail}
+            alt=""
+            className={cn(
+              "media-zoom size-full object-cover outline-none",
+              video.isShort && "thumb-short",
+            )}
+          />
+        ) : null}
         <span className="absolute inset-0 grid place-items-center bg-bg/0 transition-colors duration-150 group-hover:bg-bg/25">
           <span className="grid size-12 place-items-center rounded-full bg-fg text-bg opacity-0 shadow-sm transition-opacity duration-150 group-hover:opacity-100">
             <Play className="ml-0.5 size-5 fill-current" />
           </span>
         </span>
-        {video.isShort ? (
-          <span className="absolute top-3 left-3 rounded-md bg-bg/80 px-2 py-1 text-xs tracking-[0.16em] text-fg uppercase backdrop-blur-sm">
-            Short
+        {badge ? (
+          <span className="game-tag absolute top-3 left-3 rounded-md px-2 py-1 text-xs tracking-[0.16em] uppercase">
+            {badge}
           </span>
         ) : null}
       </div>
@@ -46,13 +62,26 @@ function VideoCard({ video }: { video: YoutubeVideo }) {
         <h3 className="line-clamp-2 text-sm font-medium text-fg">
           {video.title}
         </h3>
-        <p className="mt-2 text-xs text-faint">
-          {viewsLabel(video.views)}
-          {" · "}
-          {format(new Date(video.published), "MMM d, yyyy")}
-        </p>
+        <p className="mt-2 text-xs text-faint">{meta}</p>
       </div>
     </a>
+  );
+}
+
+function twitchBadge(kind: string) {
+  if (kind === "highlight") return "Highlight";
+  if (kind === "upload") return "Upload";
+  return "VOD";
+}
+
+function TwitchCard({ video }: { video: TwitchVideo }) {
+  const date = format(new Date(video.published), "MMM d, yyyy");
+  return (
+    <VideoCard
+      video={video}
+      badge={twitchBadge(video.kind)}
+      meta={date}
+    />
   );
 }
 
@@ -129,6 +158,7 @@ function TikTokStaticCard() {
 
 export function LatestContent({ data }: { data: LatestContentData }) {
   const youtube = data.youtube.slice(0, 6);
+  const twitch = data.twitch.slice(0, 3);
   const tiktok = data.tiktok.slice(0, 3);
 
   return (
@@ -156,7 +186,11 @@ export function LatestContent({ data }: { data: LatestContentData }) {
           <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {youtube.map((video) => (
               <li key={video.id}>
-                <VideoCard video={video} />
+                <VideoCard
+                  video={video}
+                  badge={video.isShort ? "Short" : undefined}
+                  meta={`${viewsLabel(video.views)} · ${format(new Date(video.published), "MMM d, yyyy")}`}
+                />
               </li>
             ))}
           </ul>
@@ -164,6 +198,39 @@ export function LatestContent({ data }: { data: LatestContentData }) {
           <p className="hairline mt-10 rounded-2xl bg-surface px-5 py-10 text-center text-sm text-muted">
             Videos will land here as soon as the feed answers. Meanwhile, the
             full archive lives on YouTube.
+          </p>
+        )}
+
+        <div className="mt-16 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-medium tracking-[0.28em] text-accent uppercase">
+              Twitch
+            </p>
+            <h3 className="mt-2 font-display text-xl font-semibold text-fg">
+              Recent VODs
+            </h3>
+          </div>
+          <Button asChild variant="outline" size="sm">
+            <a href={`${SOCIALS.twitch}/videos`} target="_blank" rel="noreferrer">
+              <IconTwitch className="size-3.5" />
+              {TWITCH_HANDLE}
+              <ExternalLink className="size-3.5" />
+            </a>
+          </Button>
+        </div>
+
+        {twitch.length > 0 ? (
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {twitch.map((video) => (
+              <li key={video.id}>
+                <TwitchCard video={video} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="hairline mt-8 rounded-2xl bg-surface px-5 py-10 text-center text-sm text-muted">
+            VODs show up here after a stream. Watch live on Twitch in the
+            meantime.
           </p>
         )}
 

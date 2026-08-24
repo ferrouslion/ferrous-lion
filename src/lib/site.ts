@@ -10,6 +10,7 @@ export const SOCIALS = {
 
 export const YOUTUBE_CHANNEL_ID = "UCpGXjtF4LLnHf9ES3fNwSQQ";
 export const TIKTOK_HANDLE = "ferrouslion";
+export const TWITCH_HANDLE = "ferrouslion";
 export const EPIC_CREATOR_CODE = "ferrouslion";
 
 export const NAV = [

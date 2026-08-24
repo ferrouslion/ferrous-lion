@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { TIKTOK_HANDLE, YOUTUBE_CHANNEL_ID } from "./site";
+import { TIKTOK_HANDLE, TWITCH_HANDLE, YOUTUBE_CHANNEL_ID } from "./site";
 
 export type YoutubeVideo = {
   id: string;
@@ -9,6 +9,15 @@ export type YoutubeVideo = {
   published: string;
   views: number;
   isShort: boolean;
+};
+
+export type TwitchVideo = {
+  id: string;
+  title: string;
+  url: string;
+  thumbnail: string;
+  published: string;
+  kind: string;
 };
 
 export type TikTokVideo = {
@@ -21,10 +30,11 @@ export type TikTokVideo = {
 
 export type LatestContent = {
   youtube: YoutubeVideo[];
+  twitch: TwitchVideo[];
   tiktok: TikTokVideo[];
 };
 
-const EMPTY: LatestContent = { youtube: [], tiktok: [] };
+const EMPTY: LatestContent = { youtube: [], twitch: [], tiktok: [] };
 
 function decodeXml(value: string) {
   return value
@@ -76,6 +86,49 @@ async function loadYoutube(): Promise<YoutubeVideo[]> {
   );
   if (!res.ok) return [];
   return parseYoutubeFeed(await res.text());
+}
+
+function parseTwitchFeed(xml: string): TwitchVideo[] {
+  const items = xml.split("<item>").slice(1);
+  const videos: TwitchVideo[] = [];
+
+  for (const item of items) {
+    const id = item.match(/<guid[^>]*>([^<]+)<\/guid>/)?.[1];
+    const titleRaw = item.match(/<title>([^<]*)<\/title>/)?.[1];
+    const link = item.match(/<link>([^<]+)<\/link>/)?.[1];
+    const published = item.match(/<pubDate>([^<]+)<\/pubDate>/)?.[1];
+    const kind = item.match(/<category>([^<]+)<\/category>/)?.[1] ?? "archive";
+    const thumb = item.match(/img src="([^"]+)"/)?.[1]
+      ?? item.match(/img src="([^&]+)"/)?.[1];
+    if (!id || !titleRaw || !published) continue;
+
+    videos.push({
+      id,
+      title: decodeXml(titleRaw),
+      url: link ?? `https://www.twitch.tv/videos/${id}`,
+      thumbnail: thumb ? decodeXml(thumb) : "",
+      published: new Date(published).toISOString(),
+      kind,
+    });
+  }
+
+  return videos;
+}
+
+async function loadTwitch(): Promise<TwitchVideo[]> {
+  try {
+    const res = await fetch(
+      `https://twitchrss.appspot.com/vod/${TWITCH_HANDLE}`,
+      {
+        headers: { "User-Agent": "FerrousLionSite/1.0 (+https://x.com/FerrousLion)" },
+        signal: AbortSignal.timeout(6000),
+      },
+    );
+    if (!res.ok) return [];
+    return parseTwitchFeed(await res.text());
+  } catch {
+    return [];
+  }
 }
 
 function uniqueIds(ids: string[]) {
@@ -156,8 +209,16 @@ async function loadTikTok(): Promise<TikTokVideo[]> {
 export const fetchLatestContent = createServerFn({ method: "GET" }).handler(
   async (): Promise<LatestContent> => {
     try {
-      const [youtube, tiktok] = await Promise.all([loadYoutube(), loadTikTok()]);
-      return { youtube: youtube.slice(0, 6), tiktok: tiktok.slice(0, 3) };
+      const [youtube, twitch, tiktok] = await Promise.all([
+        loadYoutube(),
+        loadTwitch(),
+        loadTikTok(),
+      ]);
+      return {
+        youtube: youtube.slice(0, 6),
+        twitch: twitch.slice(0, 3),
+        tiktok: tiktok.slice(0, 3),
+      };
     } catch {
       return EMPTY;
     }
