@@ -1,6 +1,6 @@
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { LionMark } from "@/components/lion-mark";
+import { BrandMark } from "@/components/brand-mark";
 import { SOCIALS } from "@/lib/site";
 
 export function Hero() {
@@ -11,8 +11,8 @@ export function Hero() {
     >
       <img
         src="/hero.jpg"
-        alt=""
-        className="absolute inset-0 size-full object-cover object-left outline-none sm:object-center"
+        alt="Ferrous Lion standing beside the FL Gaming logo"
+        className="absolute inset-0 size-full object-cover object-right outline-none sm:object-center"
       />
       <div className="hero-shade absolute inset-0" aria-hidden />
 
@@ -21,7 +21,7 @@ export function Hero() {
           Content creator / streamer
         </p>
         <div className="reveal reveal-delay-1 mt-5 flex items-center gap-4">
-          <LionMark className="hidden size-14 sm:block md:size-16" />
+          <BrandMark className="hidden size-14 sm:block md:size-16" />
           <h1 className="font-display text-3xl font-semibold tracking-[0.06em] text-fg uppercase">
             Ferrous Lion
           </h1>

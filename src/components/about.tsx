@@ -54,9 +54,9 @@ export function About() {
         <div className="grid gap-4 sm:grid-cols-[0.7fr_1.3fr] lg:grid-cols-1 lg:grid-rows-[auto_1fr]">
           <div className="flex items-end gap-4 lg:hidden">
             <img
-              src="/avatar.jpg"
+              src="/brand/avatar-sm.png"
               alt="Ferrous Lion"
-              className="size-24 rounded-2xl object-cover"
+              className="size-24 rounded-2xl object-cover object-top bg-raised"
             />
             <div>
               <p className="font-display text-lg font-semibold text-fg">
@@ -73,9 +73,9 @@ export function About() {
             />
             <div className="about-fade absolute inset-x-0 bottom-0 flex items-center gap-3 p-4">
               <img
-                src="/avatar.jpg"
+                src="/brand/avatar-sm.png"
                 alt=""
-                className="hidden size-12 rounded-xl object-cover outline-none lg:block"
+                className="hidden size-12 rounded-xl object-cover object-top outline-none lg:block bg-raised"
               />
               <div className="hidden lg:block">
                 <p className="font-display text-sm font-semibold text-fg">

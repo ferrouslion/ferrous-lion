@@ -19,7 +19,7 @@ export const Route = createRootRoute({
           "Ferrous Lion — gaming streamer. Chill Fortnite, story worlds on PC, and PS5 exclusives. Watch on Twitch, YouTube, and TikTok.",
       },
       { name: "apple-mobile-web-app-title", content: APP_NAME },
-      { name: "theme-color", content: "#09090b" },
+      { name: "theme-color", content: "#f6f1e8" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:type", content: "website" },
       { property: "og:title", content: `${APP_NAME} — Streams` },

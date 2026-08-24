@@ -2,15 +2,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #09090b;
-  --color-surface: #131214;
-  --color-raised: #1b1918;
-  --color-fg: #f3efe8;
-  --color-muted: #9c9590;
-  --color-faint: #6f6a66;
+  --color-bg: #f6f1e8;
+  --color-surface: #fffdf8;
+  --color-raised: #ece4d6;
+  --color-fg: #1c1916;
+  --color-muted: #6b635c;
+  --color-faint: #8f867c;
   --color-accent: #c4622d;
-  --color-accent-fg: #1a0d08;
-  --color-border: rgb(243 239 232 / 0.1);
+  --color-accent-fg: #fffaf4;
+  --color-border: rgb(28 25 22 / 0.12);
   --color-ring: #c4622d;
 
   --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
@@ -64,7 +64,7 @@
   }
 
   img {
-    outline: 1px solid rgb(243 239 232 / 0.08);
+    outline: 1px solid rgb(28 25 22 / 0.08);
     outline-offset: -1px;
   }
 }
@@ -110,16 +110,21 @@
     background:
       linear-gradient(
         180deg,
-        rgb(9 9 11 / 0.35) 0%,
-        rgb(9 9 11 / 0.15) 35%,
-        rgb(9 9 11 / 0.72) 72%,
+        rgb(246 241 232 / 0.18) 0%,
+        rgb(246 241 232 / 0.08) 38%,
+        rgb(246 241 232 / 0.82) 78%,
         var(--color-bg) 100%
       ),
-      linear-gradient(90deg, rgb(9 9 11 / 0.55) 0%, rgb(9 9 11 / 0.15) 55%, transparent 100%);
+      linear-gradient(
+        90deg,
+        rgb(246 241 232 / 0.78) 0%,
+        rgb(246 241 232 / 0.35) 42%,
+        transparent 72%
+      );
   }
 
   .about-fade {
-    background: linear-gradient(transparent, rgb(9 9 11 / 0.88));
+    background: linear-gradient(transparent, rgb(246 241 232 / 0.92));
   }
 
   .thumb-short {
@@ -143,7 +148,7 @@
   }
 
   .hairline {
-    box-shadow: 0 0 0 1px rgb(243 239 232 / 0.08);
+    box-shadow: 0 0 0 1px rgb(28 25 22 / 0.1);
   }
 
   .hairline-hover {
@@ -151,7 +156,7 @@
   }
 
   .hairline-hover:hover {
-    box-shadow: 0 0 0 1px rgb(243 239 232 / 0.16);
+    box-shadow: 0 0 0 1px rgb(28 25 22 / 0.2);
   }
 }
 

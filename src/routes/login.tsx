@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { GROK_PROVIDERS, authEnabled, signIn } from "@/lib/auth/client";
-import { LionMark } from "@/components/lion-mark";
+import { BrandMark } from "@/components/brand-mark";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/login")({ component: Login });
@@ -10,7 +10,7 @@ function Login() {
     <main className="grid min-h-[100svh] place-items-center bg-bg px-5 text-fg">
       <div className="w-full max-w-sm">
         <Link to="/" className="mb-8 flex items-center gap-2.5 text-fg">
-          <LionMark className="size-8" />
+          <BrandMark className="size-8" />
           <span className="font-display text-sm font-semibold tracking-[0.18em] uppercase">
             Ferrous Lion
           </span>

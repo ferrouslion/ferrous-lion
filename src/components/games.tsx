@@ -25,7 +25,7 @@ export function Games() {
                     alt=""
                     className="media-zoom size-full object-cover outline-none"
                   />
-                  <span className="absolute top-3 left-3 rounded-md bg-bg/80 px-2.5 py-1 text-[0.7rem] tracking-[0.16em] text-fg uppercase backdrop-blur-sm">
+                  <span className="absolute top-3 left-3 rounded-md bg-bg/85 px-2.5 py-1 text-xs tracking-[0.16em] text-fg uppercase backdrop-blur-sm">
                     {game.tag}
                   </span>
                 </div>

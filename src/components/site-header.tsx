@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { AuthSlot } from "@/components/auth-slot";
-import { LionMark } from "@/components/lion-mark";
+import { BrandMark } from "@/components/brand-mark";
 import { Button } from "@/components/ui/button";
 import { NAV, SOCIALS } from "@/lib/site";
 import { cn } from "@/lib/utils";
@@ -35,7 +35,7 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:h-[4.5rem] sm:px-8">
         <a href="#top" className="flex items-center gap-2.5 text-fg">
-          <LionMark className="size-8" />
+          <BrandMark className="size-8" />
           <span className="font-display text-sm font-semibold tracking-[0.18em] uppercase">
             Ferrous Lion
           </span>
