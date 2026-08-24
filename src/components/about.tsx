@@ -1,9 +1,9 @@
 import { EPIC_CREATOR_CODE } from "@/lib/site";
 
 const FACTS = [
-  { label: "Home setup", value: "PC first, PS5 for exclusives" },
+  { label: "Gaming setup", value: "PC first, PS5 for exclusives" },
   { label: "On the field", value: "Auburn · Dolphins · United" },
-  { label: "Creator code", value: EPIC_CREATOR_CODE },
+  { label: "Epic creator code", value: EPIC_CREATOR_CODE },
 ];
 
 export function About() {
@@ -15,22 +15,20 @@ export function About() {
             About me
           </p>
           <h2 className="mt-3 text-2xl font-semibold text-fg">
-            A lion in the lobby. A dad on the couch.
+            A lion in the lobby. A fan on Saturdays and Sundays 🏈 ⚽️
           </h2>
           <div className="mt-6 space-y-4 text-muted">
             <p>
-              I'm Ferrous Lion — a content creator and streamer who plays
-              for the vibe, not the rank. Most nights I'm on PC: dropping
-              into Fortnite, wandering a story, or letting GTA get a little too
-              loud. When a Sony exclusive is ready, I fire up the PS5 and take
-              my time.
+              I’m FerrousLion, a content creator and streamer who prioritizes
+              having fun over achieving high ranks. Most nights, I’m on my PC,
+              playing games like Fortnite, GTA, Madden, or FC. At times, my son
+              will join me for Fortnite BR Duos. Occasionally, I switch to the
+              PS5 and indulge in one of their exclusive titles.
             </p>
             <p>
-              Off-stream I'm an Auburn man, a Dolphins fan, and I keep one
-              eye on United and Inter Miami. I have a kid who already schools me
-              in Battle Royale. If you want Friday crowns, a quiet walk through
-              the Forbidden West, or just someone talking shop in chat — the
-              door is open.
+              Off-stream, I love watching Auburn and Dolphins football, and
+              Manchester United and Inter Miami soccer. I offer my thoughts on 𝕏
+              about my favorite teams during and after every game.
             </p>
           </div>
 
@@ -55,12 +53,12 @@ export function About() {
           <div className="flex items-end gap-4 lg:hidden">
             <img
               src="/brand/avatar-sm.png"
-              alt="Ferrous Lion"
+              alt="FerrousLion"
               className="size-24 rounded-2xl object-cover object-top bg-raised"
             />
             <div>
               <p className="font-display text-lg font-semibold text-fg">
-                Ferrous Lion
+                FerrousLion
               </p>
               <p className="text-sm text-muted">@FerrousLion</p>
             </div>
@@ -79,7 +77,7 @@ export function About() {
               />
               <div className="hidden lg:block">
                 <p className="font-display text-sm font-semibold text-fg">
-                  Ferrous Lion
+                  FerrousLion
                 </p>
                 <p className="text-xs text-muted">Streams · clips · story runs</p>
               </div>

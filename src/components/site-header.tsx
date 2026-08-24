@@ -37,7 +37,7 @@ export function SiteHeader() {
         <a href="#top" className="flex items-center gap-2.5 text-fg">
           <BrandMark className="size-8" />
           <span className="font-display text-sm font-semibold tracking-[0.18em] uppercase">
-            Ferrous Lion
+            FerrousLion
           </span>
         </a>
 

@@ -158,6 +158,12 @@
   .hairline-hover:hover {
     box-shadow: 0 0 0 1px rgb(28 25 22 / 0.2);
   }
+
+  .game-tag {
+    background-color: var(--color-surface);
+    color: var(--color-fg);
+    box-shadow: 0 0 0 1px rgb(28 25 22 / 0.12);
+  }
 }
 
 @keyframes rise-in {

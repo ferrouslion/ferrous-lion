@@ -9,7 +9,7 @@ export function SiteFooter() {
           <BrandMark className="size-8" />
           <div>
             <p className="font-display text-sm font-semibold tracking-[0.16em] text-fg uppercase">
-              Ferrous Lion
+              FerrousLion
             </p>
             <p className="text-xs text-faint">
               Epic creator code{" "}

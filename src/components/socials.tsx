@@ -1,4 +1,5 @@
 import {
+  IconInstagram,
   IconTikTok,
   IconTwitch,
   IconX,
@@ -35,6 +36,13 @@ const LINKS = [
     blurb: "Clips and simultaneous live streams.",
     icon: IconTikTok,
   },
+  {
+    name: "Instagram",
+    href: SOCIALS.instagram,
+    handle: "@ferrouslionx",
+    blurb: "Game clip reels.",
+    icon: IconInstagram,
+  },
 ] as const;
 
 export function Socials() {
@@ -48,7 +56,7 @@ export function Socials() {
           Find me everywhere the lion lands
         </h2>
         <p className="mt-4 max-w-2xl text-muted">
-          Same name on every platform. Follow the one you actually open.
+          Same name on every platform. Follow on your favorite platform.
         </p>
 
         <ul className="mt-12 grid gap-4 sm:grid-cols-2">

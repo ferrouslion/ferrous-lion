@@ -1,4 +1,5 @@
 import { GAMES } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export function Games() {
   return (
@@ -12,20 +13,24 @@ export function Games() {
         </h2>
         <p className="mt-4 max-w-2xl text-muted">
           Fortnite is home base. Everything else is whatever the week is asking
-          for — football, night cities, or a long story on the other screen.
+          for — Starfield, GTA, mystical worlds, or just chatting about latest
+          sports action.
         </p>
 
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {GAMES.map((game) => (
             <li key={game.slug}>
               <article className="hairline hairline-hover group overflow-hidden rounded-2xl bg-surface">
-                <div className="relative aspect-4/3 overflow-hidden">
+                <div className="relative aspect-4/3 overflow-hidden bg-raised">
                   <img
                     src={game.image}
                     alt=""
-                    className="media-zoom size-full object-cover outline-none"
+                    className={cn(
+                      "media-zoom size-full object-cover outline-none",
+                      "imageFit" in game && game.imageFit === "top" && "object-top",
+                    )}
                   />
-                  <span className="absolute top-3 left-3 rounded-md bg-bg/85 px-2.5 py-1 text-xs tracking-[0.16em] text-fg uppercase backdrop-blur-sm">
+                  <span className="game-tag absolute top-3 left-3 rounded-md px-2.5 py-1 text-xs tracking-[0.16em] uppercase">
                     {game.tag}
                   </span>
                 </div>

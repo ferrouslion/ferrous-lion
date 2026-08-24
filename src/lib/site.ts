@@ -1,10 +1,11 @@
-export const APP_NAME = "Ferrous Lion";
+export const APP_NAME = "FerrousLion";
 
 export const SOCIALS = {
   x: "https://x.com/FerrousLion",
   youtube: "https://www.youtube.com/@ferrouslion",
   twitch: "https://www.twitch.tv/ferrouslion",
   tiktok: "https://www.tiktok.com/@ferrouslion",
+  instagram: "https://www.instagram.com/ferrouslionx/",
 } as const;
 
 export const YOUTUBE_CHANNEL_ID = "UCpGXjtF4LLnHf9ES3fNwSQQ";
@@ -55,10 +56,11 @@ export const GAMES = [
     tag: "PS5",
   },
   {
-    slug: "valheim",
-    title: "Valheim",
-    image: "/games/valheim.jpg",
-    blurb: "Fjord nights with friends. The next fire to sit around.",
-    tag: "Co-op",
+    slug: "chatting",
+    title: "Just Chatting",
+    image: "/brand/avatar-sm.png",
+    blurb: "Sports takes, lobby talk, and hanging in chat when the games take a back seat.",
+    tag: "Talk",
+    imageFit: "top",
   },
 ] as const;

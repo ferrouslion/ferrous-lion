@@ -1,6 +1,7 @@
 import { ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BrandMark } from "@/components/brand-mark";
+import { IconX } from "@/components/brand-icons";
 import { SOCIALS } from "@/lib/site";
 
 export function Hero() {
@@ -11,7 +12,7 @@ export function Hero() {
     >
       <img
         src="/hero.jpg"
-        alt="Ferrous Lion standing beside the FL Gaming logo"
+        alt="FerrousLion standing beside the FL Gaming logo"
         className="absolute inset-0 size-full object-cover object-right outline-none sm:object-center"
       />
       <div className="hero-shade absolute inset-0" aria-hidden />
@@ -23,17 +24,29 @@ export function Hero() {
         <div className="reveal reveal-delay-1 mt-5 flex items-center gap-4">
           <BrandMark className="hidden size-14 sm:block md:size-16" />
           <h1 className="font-display text-3xl font-semibold tracking-[0.06em] text-fg uppercase">
-            Ferrous Lion
+            FerrousLion
           </h1>
         </div>
-        <p className="reveal reveal-delay-2 mt-5 max-w-xl text-lg text-muted sm:text-xl">
-          Chill Fortnite nights, story worlds on PC, and PS5 exclusives when they
-          earn the wait. Pull up.
-        </p>
+        <blockquote className="reveal reveal-delay-2 mt-5 max-w-xl">
+          <p className="text-base text-muted sm:text-lg">
+            “As a lion in the mountains, confident in his strength, comes upon a
+            herd of cattle feeding in a low-lying meadow... so Achilles came on,
+            his heart full of fierce resolve.”
+          </p>
+          <footer className="mt-2 text-sm text-faint">
+            ~ Homer, The Iliad (Book 22)
+          </footer>
+        </blockquote>
         <div className="reveal reveal-delay-3 mt-8 flex flex-wrap items-center gap-3">
           <Button asChild size="lg">
             <a href={SOCIALS.twitch} target="_blank" rel="noreferrer">
               Watch on Twitch
+            </a>
+          </Button>
+          <Button asChild size="lg">
+            <a href={SOCIALS.x} target="_blank" rel="noreferrer">
+              <IconX className="size-4" />
+              Watch on 𝕏
             </a>
           </Button>
           <Button asChild size="lg" variant="outline">

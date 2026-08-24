@@ -16,7 +16,7 @@ export const Route = createRootRoute({
       {
         name: "description",
         content:
-          "Ferrous Lion — gaming streamer. Chill Fortnite, story worlds on PC, and PS5 exclusives. Watch on Twitch, YouTube, and TikTok.",
+          "FerrousLion — gaming streamer. Chill Fortnite, story worlds on PC, and PS5 exclusives. Watch on Twitch, YouTube, and TikTok.",
       },
       { name: "apple-mobile-web-app-title", content: APP_NAME },
       { name: "theme-color", content: "#f6f1e8" },
@@ -37,6 +37,7 @@ export const Route = createRootRoute({
         : []),
     ],
     links: [
+      { rel: "icon", href: "/favicon.ico" },
       { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
       { rel: "stylesheet", href: appCss },
       { rel: "manifest", href: "/__grok/manifest.webmanifest" },

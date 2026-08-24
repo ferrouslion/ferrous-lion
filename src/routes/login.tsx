@@ -12,7 +12,7 @@ function Login() {
         <Link to="/" className="mb-8 flex items-center gap-2.5 text-fg">
           <BrandMark className="size-8" />
           <span className="font-display text-sm font-semibold tracking-[0.18em] uppercase">
-            Ferrous Lion
+            FerrousLion
           </span>
         </Link>
         <div className="hairline rounded-2xl bg-surface p-6">
