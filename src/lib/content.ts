@@ -1,5 +1,5 @@
 import { createServerFn } from "@tanstack/react-start";
-import { TIKTOK_HANDLE, TWITCH_HANDLE, YOUTUBE_CHANNEL_ID } from "./site";
+import { TIKTOK_HANDLE, TWITCH_HANDLE, RUMBLE_HANDLE, YOUTUBE_CHANNEL_ID } from "./site";
 
 export type YoutubeVideo = {
   id: string;
@@ -20,6 +20,14 @@ export type TwitchVideo = {
   kind: string;
 };
 
+export type RumbleVideo = {
+  id: string;
+  title: string;
+  url: string;
+  thumbnail: string;
+  published: string;
+};
+
 export type TikTokVideo = {
   id: string;
   title: string;
@@ -30,11 +38,12 @@ export type TikTokVideo = {
 
 export type LatestContent = {
   youtube: YoutubeVideo[];
+  rumble: RumbleVideo[];
   twitch: TwitchVideo[];
   tiktok: TikTokVideo[];
 };
 
-const EMPTY: LatestContent = { youtube: [], twitch: [], tiktok: [] };
+const EMPTY: LatestContent = { youtube: [], rumble: [], twitch: [], tiktok: [] };
 
 function decodeXml(value: string) {
   return value
@@ -131,6 +140,61 @@ async function loadTwitch(): Promise<TwitchVideo[]> {
   }
 }
 
+function parseRumblePage(html: string): RumbleVideo[] {
+  const videos: RumbleVideo[] = [];
+  const seen = new Set<string>();
+  const hrefs = [
+    ...html.matchAll(/href="(\/v[^"]+\.html)"/g),
+    ...html.matchAll(/href="(https:\/\/rumble\.com\/v[^"]+\.html)"/g),
+  ];
+
+  for (const match of hrefs) {
+    const href = match[1];
+    const url = href.startsWith("http") ? href : `https://rumble.com${href}`;
+    const id = href.match(/\/(v[a-zA-Z0-9]+)/)?.[1] ?? href;
+    if (seen.has(id)) continue;
+    seen.add(id);
+
+    const window = html.slice(Math.max(0, match.index ?? 0), (match.index ?? 0) + 1200);
+    const title =
+      window.match(/title="([^"]{3,180})"/)?.[1] ??
+      window.match(/videostream__heading[^>]*>([^<]+)/)?.[1] ??
+      "Watch on Rumble";
+    const thumb =
+      window.match(/src="(https:\/\/[^"]+(?:jpg|jpeg|png|webp)[^"]*)"/i)?.[1] ?? "";
+    const published =
+      window.match(/datetime="([^"]+)"/)?.[1] ?? new Date().toISOString();
+
+    videos.push({
+      id,
+      title: decodeXml(title).trim(),
+      url,
+      thumbnail: thumb,
+      published,
+    });
+    if (videos.length >= 3) break;
+  }
+
+  return videos;
+}
+
+async function loadRumble(): Promise<RumbleVideo[]> {
+  try {
+    const res = await fetch(`https://rumble.com/user/${RUMBLE_HANDLE}`, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (compatible; FerrousLionSite/1.0; +https://x.com/FerrousLion)",
+        Accept: "text/html",
+      },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return [];
+    return parseRumblePage(await res.text());
+  } catch {
+    return [];
+  }
+}
+
 function uniqueIds(ids: string[]) {
   return [...new Set(ids)];
 }
@@ -209,13 +273,15 @@ async function loadTikTok(): Promise<TikTokVideo[]> {
 export const fetchLatestContent = createServerFn({ method: "GET" }).handler(
   async (): Promise<LatestContent> => {
     try {
-      const [youtube, twitch, tiktok] = await Promise.all([
+      const [youtube, rumble, twitch, tiktok] = await Promise.all([
         loadYoutube(),
+        loadRumble(),
         loadTwitch(),
         loadTikTok(),
       ]);
       return {
         youtube: youtube.slice(0, 6),
+        rumble: rumble.slice(0, 3),
         twitch: twitch.slice(0, 3),
         tiktok: tiktok.slice(0, 3),
       };
