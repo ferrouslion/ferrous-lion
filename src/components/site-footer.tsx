@@ -19,12 +19,12 @@ export function SiteFooter() {
         </div>
         <p className="text-xs text-faint">
           <a
-            href={SOCIALS.twitch}
+            href={SOCIALS.rumble}
             className="hover:text-muted"
             target="_blank"
             rel="noreferrer"
           >
-            Twitch
+            Rumble
           </a>
           <span className="mx-2">·</span>
           Built for the next drop-in.
