@@ -39,6 +39,11 @@ export function Hero() {
         </blockquote>
         <div className="reveal reveal-delay-3 mt-8 flex flex-wrap items-center gap-3">
           <Button asChild size="lg">
+            <a href={SOCIALS.rumble} target="_blank" rel="noreferrer">
+              Watch Live on Rumble
+            </a>
+          </Button>
+          <Button asChild size="lg" variant="outline">
             <a href={SOCIALS.twitch} target="_blank" rel="noreferrer">
               Watch on Twitch
             </a>
