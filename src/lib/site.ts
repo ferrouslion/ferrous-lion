@@ -1,6 +1,7 @@
 export const APP_NAME = "FerrousLion";
 
 export const SOCIALS = {
+  rumble: "https://rumble.com/user/ferrouslion",
   x: "https://x.com/FerrousLion",
   youtube: "https://www.youtube.com/@ferrouslion",
   twitch: "https://www.twitch.tv/ferrouslion",
@@ -11,6 +12,7 @@ export const SOCIALS = {
 export const YOUTUBE_CHANNEL_ID = "UCpGXjtF4LLnHf9ES3fNwSQQ";
 export const TIKTOK_HANDLE = "ferrouslion";
 export const TWITCH_HANDLE = "ferrouslion";
+export const RUMBLE_HANDLE = "ferrouslion";
 export const EPIC_CREATOR_CODE = "ferrouslion";
 
 export const NAV = [
