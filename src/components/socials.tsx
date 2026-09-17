@@ -1,5 +1,6 @@
 import {
   IconInstagram,
+  IconRumble,
   IconTikTok,
   IconTwitch,
   IconX,
@@ -8,6 +9,13 @@ import {
 import { SOCIALS } from "@/lib/site";
 
 const LINKS = [
+  {
+    name: "Rumble",
+    href: SOCIALS.rumble,
+    handle: "ferrouslion",
+    blurb: "The default live stage. Streams and VODs.",
+    icon: IconRumble,
+  },
   {
     name: "X",
     href: SOCIALS.x,
