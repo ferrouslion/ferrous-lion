@@ -34,6 +34,14 @@ export function IconTikTok(props: IconProps) {
   );
 }
 
+export function IconRumble(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path d="M19.62 8.28a6.9 6.9 0 0 0-2.67-2.72A9.4 9.4 0 0 0 12.3 4.5c-1.7 0-3.28.36-4.66 1.06A6.9 6.9 0 0 0 4.97 8.3 8.3 8.3 0 0 0 4 12.14c0 1.4.33 2.66.97 3.85a6.9 6.9 0 0 0 2.67 2.73 9.4 9.4 0 0 0 4.66 1.05c1.7 0 3.28-.35 4.65-1.05a6.9 6.9 0 0 0 2.67-2.73c.64-1.19.97-2.45.97-3.85 0-1.38-.32-2.64-.97-3.86ZM10.4 8.4h2.28c1.1 0 1.95.24 2.52.73.58.48.86 1.16.86 2.04 0 .7-.18 1.28-.54 1.74-.36.45-.88.75-1.54.88l2.3 3.41h-2.16l-2.04-3.2h-.52v3.2H10.4V8.4Zm2.16 4.05c.46 0 .82-.12 1.07-.36.26-.25.38-.58.38-1 0-.44-.12-.78-.38-1.02-.25-.25-.61-.37-1.07-.37h-.82v2.75h.82Z" />
+    </svg>
+  );
+}
+
 export function IconInstagram(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
