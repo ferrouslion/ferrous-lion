@@ -1,5 +1,4 @@
 import {
-  IconInstagram,
   IconPickax,
   IconRumble,
   IconTikTok,
@@ -51,13 +50,6 @@ const LINKS = [
     handle: "@ferrouslion",
     blurb: "Clips and simultaneous live streams.",
     icon: IconTikTok,
-  },
-  {
-    name: "Instagram",
-    href: SOCIALS.instagram,
-    handle: "@ferrouslionx",
-    blurb: "Game clip reels.",
-    icon: IconInstagram,
   },
 ] as const;
 

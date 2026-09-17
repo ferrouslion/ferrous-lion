@@ -7,7 +7,6 @@ export const SOCIALS = {
   youtube: "https://www.youtube.com/@ferrouslion",
   twitch: "https://www.twitch.tv/ferrouslion",
   tiktok: "https://www.tiktok.com/@ferrouslion",
-  instagram: "https://www.instagram.com/ferrouslionx/",
 } as const;
 
 export const YOUTUBE_CHANNEL_ID = "UCpGXjtF4LLnHf9ES3fNwSQQ";
