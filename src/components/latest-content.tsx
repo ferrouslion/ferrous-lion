@@ -3,12 +3,13 @@ import { format } from "date-fns";
 import { ExternalLink, Play } from "lucide-react";
 import type {
   LatestContent as LatestContentData,
+  RumbleVideo,
   TwitchVideo,
   YoutubeVideo,
 } from "@/lib/content";
-import { SOCIALS, TIKTOK_HANDLE, TWITCH_HANDLE } from "@/lib/site";
+import { RUMBLE_HANDLE, SOCIALS, TIKTOK_HANDLE, TWITCH_HANDLE } from "@/lib/site";
 import { Button } from "@/components/ui/button";
-import { IconTikTok, IconTwitch, IconYouTube } from "@/components/brand-icons";
+import { IconRumble, IconTikTok, IconTwitch, IconYouTube } from "@/components/brand-icons";
 import { cn } from "@/lib/utils";
 
 function viewsLabel(views: number) {
@@ -85,6 +86,34 @@ function TwitchCard({ video }: { video: TwitchVideo }) {
   );
 }
 
+function RumbleCard({ video }: { video: RumbleVideo }) {
+  const date = format(new Date(video.published), "MMM d, yyyy");
+  return <VideoCard video={video} badge="Rumble" meta={date} />;
+}
+
+function RumbleFallback() {
+  return (
+    <a
+      href={SOCIALS.rumble}
+      target="_blank"
+      rel="noreferrer"
+      className="hairline hairline-hover flex flex-col items-start gap-3 rounded-2xl bg-surface p-6 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <span>
+        <span className="block font-display text-lg font-semibold text-fg">
+          {RUMBLE_HANDLE}
+        </span>
+        <span className="mt-1 block text-sm text-muted">
+          Watch live and recent videos on Rumble — the default stage.
+        </span>
+      </span>
+      <span className="inline-flex h-11 items-center rounded-md bg-fg px-4 text-sm font-medium text-bg">
+        Watch Live on Rumble
+      </span>
+    </a>
+  );
+}
+
 function TikTokEmbed({ id, title }: { id: string; title: string }) {
   return (
     <div className="hairline overflow-hidden rounded-2xl bg-surface">
@@ -158,6 +187,7 @@ function TikTokStaticCard() {
 
 export function LatestContent({ data }: { data: LatestContentData }) {
   const youtube = data.youtube.slice(0, 6);
+  const rumble = data.rumble.slice(0, 3);
   const twitch = data.twitch.slice(0, 3);
   const tiktok = data.tiktok.slice(0, 3);
 
@@ -199,6 +229,38 @@ export function LatestContent({ data }: { data: LatestContentData }) {
             Videos will land here as soon as the feed answers. Meanwhile, the
             full archive lives on YouTube.
           </p>
+        )}
+
+        <div className="mt-16 flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-xs font-medium tracking-[0.28em] text-accent uppercase">
+              Rumble
+            </p>
+            <h3 className="mt-2 font-display text-xl font-semibold text-fg">
+              Watch live
+            </h3>
+          </div>
+          <Button asChild variant="outline" size="sm">
+            <a href={SOCIALS.rumble} target="_blank" rel="noreferrer">
+              <IconRumble className="size-3.5" />
+              {RUMBLE_HANDLE}
+              <ExternalLink className="size-3.5" />
+            </a>
+          </Button>
+        </div>
+
+        {rumble.length > 0 ? (
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {rumble.map((video) => (
+              <li key={video.id}>
+                <RumbleCard video={video} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <div className="mt-8">
+            <RumbleFallback />
+          </div>
         )}
 
         <div className="mt-16 flex flex-wrap items-end justify-between gap-4">
