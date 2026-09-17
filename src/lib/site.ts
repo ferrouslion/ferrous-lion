@@ -1,6 +1,7 @@
 export const APP_NAME = "FerrousLion";
 
 export const SOCIALS = {
+  pickax: "https://pickax.com/ferrouslion",
   rumble: "https://rumble.com/user/ferrouslion",
   x: "https://x.com/FerrousLion",
   youtube: "https://www.youtube.com/@ferrouslion",

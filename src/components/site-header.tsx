@@ -58,8 +58,8 @@ export function SiteHeader() {
             <AuthSlot />
           </div>
           <Button asChild size="sm" className="hidden sm:inline-flex">
-            <a href={SOCIALS.rumble} target="_blank" rel="noreferrer">
-              Watch Live on Rumble
+            <a href={SOCIALS.pickax} target="_blank" rel="noreferrer">
+              Follow me on ⛏️ Pickax
             </a>
           </Button>
           <button
@@ -91,8 +91,8 @@ export function SiteHeader() {
           <div className="mt-5 flex items-center justify-between gap-3 px-3">
             <AuthSlot />
             <Button asChild>
-              <a href={SOCIALS.rumble} target="_blank" rel="noreferrer">
-                Watch Live on Rumble
+              <a href={SOCIALS.pickax} target="_blank" rel="noreferrer">
+                Follow me on ⛏️ Pickax
               </a>
             </Button>
           </div>

@@ -56,7 +56,7 @@ export function Hero() {
           </Button>
           <Button asChild size="lg" variant="outline">
             <a href={SOCIALS.youtube} target="_blank" rel="noreferrer">
-              Latest on YouTube
+              Watch on YouTube
             </a>
           </Button>
         </div>

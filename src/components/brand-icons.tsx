@@ -34,6 +34,14 @@ export function IconTikTok(props: IconProps) {
   );
 }
 
+export function IconPickax(props: IconProps) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
+      <path d="M20.4 3.2c-2.4-.1-5.1.9-7.1 2.7L12 7.2 10.7 5.9c-1.9-1.8-4.7-2.8-7.1-2.7l2.6 2.6c.5.5.5 1.3 0 1.8L4.8 9l.7.7 1.4-1.4c.5-.5 1.3-.5 1.8 0L11 10.6v8.1c0 .7.6 1.3 1.3 1.3s1.3-.6 1.3-1.3v-8.1l2.3-2.3c.5-.5.5-1.3 0-1.8L14.5 5.1l.7-.7 1.4 1.4c.5.5 1.3.5 1.8 0l2-2.6Z" />
+    </svg>
+  );
+}
+
 export function IconRumble(props: IconProps) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden {...props}>
