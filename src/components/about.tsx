@@ -27,8 +27,8 @@ export function About() {
             </p>
             <p>
               Off-stream, I love watching Auburn and Dolphins football, and
-              Manchester United and Inter Miami soccer. I offer my thoughts on 𝕏
-              about my favorite teams during and after every game.
+              Manchester United and Inter Miami soccer. I offer my thoughts on
+              Pickax and 𝕏 about my favorite teams during and after every game.
             </p>
           </div>
 
